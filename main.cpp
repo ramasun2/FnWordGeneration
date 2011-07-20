@@ -6,49 +6,56 @@
 using namespace std;
 
 QList<FnWord> wordsoflength (Basis basis, int len){
-    QList <FnWord> wordList;
+    QList<FnWord> wordList;
     FnWord word;
-    if(len = 1)
+
+    if(len == 1)
     {
         for(int i =0;i<basis.size();i++)
         wordList.append(basis.at(i));
-
-
-    return wordList;
+	return wordList;
     }
-
+    
     QList<FnWord> shorterWords = wordsoflength(basis,len-1);
     foreach(FnWord x, shorterWords)
     {
-        foreach(FnWord y.basis.at()){
-    if(y.inverse() != x.at(x.size()))
-        wordList.append(x+y);
+
+      foreach(QChar a, basis){
+	if(basis.inverse(a) != x.at(0))
+	  wordList.append(a+x);
         }
 
     }
+
     return wordList;
-
-    foreach(FnWord x,wordList){
-        cout << x.StdString () << endl;
-    }
-
-    cout <<wordList.size() << endl;
+    
 }
 
 int main()
 {
+
     int length;
     cout<< "Enter a length: " << endl;
     cin >> length;
+ 
+    int rank;
+    cout << "Enter a rank: " << endl;
+    cin >> rank;
 
-    int *v = new int[length];
+    Basis basis(rank);
 
-    for(int i = 0; i<length; i++){
-        cout << i //not done
+    QList<FnWord> wordList;
+
+    wordList = wordsoflength(basis,length);
+
+    /*
+    foreach(FnWord x,wordList){
+        cout << x.toStdString() << endl;
     }
-    wordList.Print();
+    */
 
-    delete []v;
+    cout << "There are " << wordList.size() << " words." << endl;
+    
+    return 0;
 
-return 0;
-    }
+}
