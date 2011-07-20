@@ -1,33 +1,54 @@
 #include "FnWord.h"
 #include "Fn.h"
+#include "Basis.h"
+#include <QList>
 #include <iostream>
+using namespace std;
 
-int main(int argc, char *argv[])
-{
-    int i=0,j=0;
-    int count=0;
-    Basis base(2);
+QList<FnWord> wordsoflength (Basis basis, int len){
+    QList <FnWord> wordList;
     FnWord word;
-    for(i=4;i<5;i++)
+    if(len = 1)
     {
-        count=0;
-        for(j=0;j<1000000;j++)
-        {
-           word=base.at(rand()%4);
-           while(word.size()<i)
-           {
-               word*=base.at(rand()%4);
-           }
-           //std::cout<<word.toStdString()<<std::endl;
-           word=word.cyclicWord();
-           if(word.isSeparable(base))
-           {
-               count++;
-           }
-        }
-        std::cout << "S("<<i<< ",2)="<<count << std::endl;
+        for(int i =0;i<basis.size();i++)
+        wordList.append(basis.at(i));
 
+
+    return wordList;
     }
 
-    return 0;
+    QList<FnWord> shorterWords = wordsoflength(basis,len-1);
+    foreach(FnWord x, shorterWords)
+    {
+        foreach(FnWord y.basis.at()){
+    if(y.inverse() != x.at(x.size()))
+        wordList.append(x+y);
+        }
+
+    }
+    return wordList;
+
+    foreach(FnWord x,wordList){
+        cout << x.StdString () << endl;
+    }
+
+    cout <<wordList.size() << endl;
 }
+
+int main()
+{
+    int length;
+    cout<< "Enter a length: " << endl;
+    cin >> length;
+
+    int *v = new int[length];
+
+    for(int i = 0; i<length; i++){
+        cout << i //not done
+    }
+    wordList.Print();
+
+    delete []v;
+
+return 0;
+    }
